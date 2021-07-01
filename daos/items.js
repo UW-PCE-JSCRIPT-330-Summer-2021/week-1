@@ -18,12 +18,12 @@ module.exports.deleteById = async (itemId) => {
   if (indexToRemove < 0)
     return;
   
-    module.exports.items.splice(indexToRemove, 1);
+  module.exports.items.splice(indexToRemove, 1);
 }
 
 module.exports.updateById = async (itemId, newObj) => {
     const indexToReplace = module.exports.items.findIndex(i => i.id === itemId);
-    
+
     if (indexToReplace < 0)
       return;
 
