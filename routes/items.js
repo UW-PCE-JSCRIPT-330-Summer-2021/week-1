@@ -22,8 +22,13 @@ router.post("/", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-  itemDao.updateById(req.params.id, req.body);
-  res.sendStatus(200);
+  const exsist = itemDao.items.some(item => item.id === req.params.id);
+  if (exsist) {
+    itemDao.updateById(req.params.id, req.body);
+    res.sendStatus(200);
+  } else {
+    res.end();
+  }
 });
 
 router.delete("/:id", (req, res, next) => {

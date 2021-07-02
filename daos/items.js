@@ -2,7 +2,7 @@ const uuid = require('uuid');
 
 module.exports = {};
 
-module.exports.items = [];
+module.exports.items = [{ id: 'test1', field: 'val' }, { id: 'test2', field: 'val2' }];
 
 module.exports.getAll = () => {
   return module.exports.items;
@@ -21,10 +21,14 @@ module.exports.deleteById = async (itemId) => {
 
 module.exports.updateById = async (itemId, newObj) => {
   const index = module.exports.items.findIndex(item => item.id === itemId);
+  
+  let updatedObj = newObj
 
-  if (index >= 0)
-    return module.exports.items[index].field = newObj.field;
-    
+  if (updatedObj.id) {
+    delete updatedObj["id"]
+  }
+
+  return Object.assign(module.exports.items[index], updatedObj) 
 }
 
 module.exports.create = async (item) => {
