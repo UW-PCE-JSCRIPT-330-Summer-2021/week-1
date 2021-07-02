@@ -8,8 +8,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  const exsist = itemDao.items.some(item => item.id === req.params.id);
-  if (exsist) {
+  const routeExist = itemDao.items.some(item => item.id === req.params.id);
+  if (routeExist) {
     res.json(itemDao.getById(req.params.id))
   } else {
     res.sendStatus(404)
@@ -22,8 +22,8 @@ router.post("/", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-  const exsist = itemDao.items.some(item => item.id === req.params.id);
-  if (exsist) {
+  const routeExist = itemDao.items.some(item => item.id === req.params.id);
+  if (routeExist) {
     itemDao.updateById(req.params.id, req.body);
     res.sendStatus(200);
   } else {
