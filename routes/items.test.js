@@ -19,6 +19,7 @@ describe("/items", () => {
   });
 
   describe("GET /:id", () => {
+    debugger;
     it("should return item by id", async () => {
       const res = await request(server).get("/items/test2");
       expect(res.statusCode).toEqual(200);
