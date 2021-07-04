@@ -13,11 +13,16 @@ module.exports.getById = (itemId) => {
 }
 
 module.exports.deleteById = async (itemId) => {
-    // TODO: complete
+  const index = module.exports.items.findIndex(item => item.id === itemId);
+  return module.exports.items.splice(index, 1);
 }
 
 module.exports.updateById = async (itemId, newObj) => {
-    // TODO: complete
+  const index = module.exports.items.findIndex(item => item.id === itemId);
+
+  if (index >= 0) {
+    return module.exports.items[index].field = newObj.field;
+  }
 }
 
 module.exports.create = async (item) => {
