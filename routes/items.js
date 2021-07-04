@@ -4,12 +4,18 @@ const router = Router();
 const itemDao = require('../daos/items');
 
 router.get("/", (req, res, next) => {
-  res.json(itemDao.getAll())
+  res.json(itemDao.getAll());
 });
 
 router.get("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+  const item = itemDao.getById(req.params.id);
+
+  if (item) {
+    res.send(item);
+  } else {
+    res.sendStatus(404);
+  };
+
 });
 
 router.post("/", (req, res, next) => {

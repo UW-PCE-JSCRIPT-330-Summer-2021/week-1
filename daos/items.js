@@ -9,7 +9,7 @@ module.exports.getAll = () => {
 }
 
 module.exports.getById = (itemId) => {
-  // TODO: complete
+  return module.exports.items.find(item => item.id === itemId);
 }
 
 module.exports.deleteById = async (itemId) => {
