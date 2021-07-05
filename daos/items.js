@@ -14,7 +14,7 @@ module.exports.getById = (itemId) => {
 
 module.exports.deleteById = async (itemId) => {
   const indexRemove = module.exports.items.findIndex(item => item.id === itemId);
-  return module.exports.items.splice(index, 1);
+  return module.exports.items.splice(indexRemove, 1);
 }
 
 module.exports.updateById = async (itemId, newObj) => {
