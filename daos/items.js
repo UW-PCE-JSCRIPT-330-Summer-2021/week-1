@@ -22,7 +22,7 @@ module.exports.deleteById = async (itemId) => {
 module.exports.updateById = async (itemId, newObj) => {
   const indexReplace = module.exports.items.findIndex(item => item.id === itemId);
   if (indexReplace >= 0) {
-    return module.exports.items[index].field = newObj.field;
+    return module.exports.items[indexReplace].field = newObj.field;
   }
 }
 
