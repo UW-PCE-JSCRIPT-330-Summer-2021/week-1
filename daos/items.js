@@ -9,15 +9,22 @@ module.exports.getAll = () => {
 }
 
 module.exports.getById = (itemId) => {
-  // TODO: complete
+  if(itemId){
+    return module.exports.items.find(item => item.id === itemId);
+  }
+  else return null;
 }
 
 module.exports.deleteById = async (itemId) => {
-    // TODO: complete
+  const itemPos = module.exports.items.findIndex(item => item.id === itemId);
+  return module.exports.items.splice(itemPos, 1);
 }
 
 module.exports.updateById = async (itemId, newObj) => {
-    // TODO: complete
+    const newId = module.exports.items.findIndex(item => item.id === itemId);
+    if(newId >=0){
+      return module.exports.items[newId].field = newObj.field;
+    }
 }
 
 module.exports.create = async (item) => {

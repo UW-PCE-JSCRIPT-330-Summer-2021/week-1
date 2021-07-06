@@ -8,8 +8,11 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+  const id = itemDao.getById(req.params.id);
+  if(id){
+      res.send(id);
+  }
+  else res.sendStatus(404);
 });
 
 router.post("/", (req, res, next) => {
@@ -18,13 +21,12 @@ router.post("/", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+  res.json(itemDao.updateById(req.params.id, req.body));
 });
 
 router.delete("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+  const id = itemDao.deleteById(req.params.id);
+  res.json(id);
 });
 
 module.exports = router;
