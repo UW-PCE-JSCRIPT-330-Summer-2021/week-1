@@ -4,12 +4,17 @@ const router = Router();
 const itemDao = require('../daos/items');
 
 router.get("/", (req, res, next) => {
-  res.json(itemDao.getAll())
+  res.json(itemDao.getAll());
 });
 
 router.get("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+  let item = itemDao.getById(req.params.id);
+  if (item) {
+    res.json(item);
+  } else {
+    res.sendStatus(404);
+  }
+  res.json();
 });
 
 router.post("/", (req, res, next) => {
@@ -17,14 +22,13 @@ router.post("/", (req, res, next) => {
   res.sendStatus(200);
 });
 
-router.put("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+router.delete("/:id", (req, res, next) => {
+  const deleteItem = itemDao.deleteById(req.params.id);
+  res.json(deleteItem);
 });
 
-router.delete("/:id", (req, res, next) => {
-  // TODO: complete this route
-  res.sendStatus(501);
+router.put("/:id", (req, res, next) => {
+  res.json(itemDao.updateById(req.params.id, req.body));
 });
 
 module.exports = router;
