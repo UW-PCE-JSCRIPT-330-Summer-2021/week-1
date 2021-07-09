@@ -9,15 +9,21 @@ module.exports.getAll = () => {
 }
 
 module.exports.getById = (itemId) => {
-  // TODO: complete
+  return module.exports.items.find(item => item.id === itemId);
 }
 
 module.exports.deleteById = async (itemId) => {
-    // TODO: complete
+  const index = module.exports.items.findIndex(item => item.id === itemId);
+  if (index >= 0) {
+    module.exports.items.splice(index, 1);
+  }
 }
 
 module.exports.updateById = async (itemId, newObj) => {
-    // TODO: complete
+    const index = module.exports.items.findIndex(item => item.id === itemId);
+    if (index >= 0) {
+      module.exports.items[index].field = newObj.field;
+    }
 }
 
 module.exports.create = async (item) => {
