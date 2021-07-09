@@ -9,16 +9,27 @@ module.exports.getAll = () => {
 }
 
 module.exports.getById = (itemId) => {
-  // TODO: complete
-}
+  const match = module.exports.items.find(item => item.id === itemId);
+  if(match) {
+    return match;
+  } else {
+    return null;
+  }
+};
 
 module.exports.deleteById = async (itemId) => {
-    // TODO: complete
-}
+  const removeIndex = module.exports.items.findIndex(item => item.id === itemId);
+  if (removeIndex >= 0) {
+    module.exports.items.splice(removeIndex, 1);
+  }
+};
 
 module.exports.updateById = async (itemId, newObj) => {
-    // TODO: complete
-}
+  const match = module.exports.items.find(item => item.id === itemId);
+  if (match) {
+    match.field = newObj.field;
+  }
+};
 
 module.exports.create = async (item) => {
   const id = uuid.v4();
