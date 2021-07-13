@@ -29,12 +29,18 @@ module.exports.deleteById = async (itemId) => {
 module.exports.updateById = async (itemId, newObj) => {
   // TODO: complete
   const { field } = newObj;
-  module.exports.item = module.exports.items.find((item) => item.id === itemId);
-  
-  if (field) {
-    module.exports.item.field = field;
+  try {
+    module.exports.item = module.exports.items.find(
+      (item) => item.id === itemId
+    );
+
+    if (field) {
+      module.exports.item.field = field;
+    }
+    return module.exports.item.field;
+  } catch (e) {
+    
   }
-  return module.exports.item.field;
 };
 
 module.exports.create = async (item) => {
