@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "tdd": "jest --watch",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,12 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "jest": "^26.6.3",
+    "nodemon": "^2.0.9",
     "supertest": "^6.1.3"
   }
 }
