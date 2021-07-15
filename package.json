@@ -1,7 +1,7 @@
 {
   "name": "week-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "This week is an introduction to Node.js, Express, and unit testing with Jest. The focus of this week will be on getting comfortable with the development environment, tools, and best practices in back-end development.",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
