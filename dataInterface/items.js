@@ -2,22 +2,22 @@ const uuid = require('uuid');
 
 module.exports = {};
 
-module.exports.items = [];
+module.exports.items = [{ id: '7', field: 'example' }];
 
 module.exports.getAll = () => {
   return module.exports.items;
 }
 
 module.exports.getById = (itemId) => {
-  // TODO: complete
+  // TODO: complete writing this function
 }
 
 module.exports.deleteById = async (itemId) => {
-    // TODO: complete
+    // TODO: complete writing this function
 }
 
 module.exports.updateById = async (itemId, newObj) => {
-    // TODO: complete
+    // TODO: complete writing this function
 }
 
 module.exports.create = async (item) => {

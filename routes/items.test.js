@@ -1,13 +1,13 @@
 const request = require("supertest");
 
-const itemDao = require('../daos/items');
+const itemData = require('../dataInterface/items');
 const server = require("../server");
 
 describe("/items", () => {
   let items;
   beforeEach(() => {
     items = [{ id: 'test1', field: 'val' }, { id: 'test2', field: 'val2' }];
-    itemDao.items = [...items];
+    itemData.items = [...items];
   });
 
   describe("GET /", () => {
@@ -35,10 +35,10 @@ describe("/items", () => {
       const item = { field: 'different', newKey: 'other val' };
       const res = await request(server).post("/items").send(item);
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(3);
-      expect(itemDao.items[2]).toMatchObject(item);
-      expect(typeof itemDao.items[2].id).toEqual('string');
-      expect(itemDao.items[2].id).toHaveLength(36);
+      expect(itemData.items.length).toEqual(3);
+      expect(itemData.items[2]).toMatchObject(item);
+      expect(typeof itemData.items[2].id).toEqual('string');
+      expect(itemData.items[2].id).toHaveLength(36);
     });
   });
 
@@ -47,24 +47,24 @@ describe("/items", () => {
       const item = { field: 'updated', id: 'new' };
       const res = await request(server).put("/items/test1").send(item);
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(2);
-      expect(itemDao.items[0]).toEqual({ id: 'test1', field: 'updated' });
+      expect(itemData.items.length).toEqual(2);
+      expect(itemData.items[0]).toEqual({ id: 'test1', field: 'updated' });
     });
 
     it("should update a different item but not change its id", async () => {
       const item = { field: 'Updated', id: 'new2' };
       const res = await request(server).put("/items/test2").send(item);
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(2);
-      expect(itemDao.items[1]).toEqual({ id: 'test2', field: 'Updated' });
+      expect(itemData.items.length).toEqual(2);
+      expect(itemData.items[1]).toEqual({ id: 'test2', field: 'Updated' });
     });
 
     it("should do nothing if id does not exist", async () => {
       const item = { field: 'Updated', id: 'new' };
       const res = await request(server).put("/items/new").send(item);
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(2);
-      expect(itemDao.items).toEqual(items);
+      expect(itemData.items.length).toEqual(2);
+      expect(itemData.items).toEqual(items);
     });
   });
 
@@ -72,14 +72,14 @@ describe("/items", () => {
     it("should delete an item", async () => {
       const res = await request(server).delete("/items/test1");
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(1);
-      expect(itemDao.items).toEqual([items[1]]);
+      expect(itemData.items.length).toEqual(1);
+      expect(itemData.items).toEqual([items[1]]);
     });
     it("should delete a different item", async () => {
       const res = await request(server).delete("/items/test2");
       expect(res.statusCode).toEqual(200);
-      expect(itemDao.items.length).toEqual(1);
-      expect(itemDao.items).toEqual([items[0]]);
+      expect(itemData.items.length).toEqual(1);
+      expect(itemData.items).toEqual([items[0]]);
     });
   });
 
